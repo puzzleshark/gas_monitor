@@ -15,5 +15,5 @@ class GasMonitorConfigFlow(config_entries.ConfigFlow, domain="gas_monitor"):
             pass
 
         return self.async_show_form(
-            step_id="device", data_schema=vol.Schema({vol.Required("mac"): str})
+            step_id="user", data_schema=vol.Schema({vol.Required("mac"): str})
         )
