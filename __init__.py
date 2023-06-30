@@ -16,9 +16,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.components.bluetooth import BluetoothScanningMode
-from homeassistant.components.bluetooth.passive_update_processor import (
-    PassiveBluetoothProcessorCoordinator,
-)
+from homeassistant.components.bluetooth.passive_update_processor import PassiveBluetoothProcessorCoordinator
 from homeassistant.const import Platform
 
 PLATFORMS: list[Platform] = [Platform.SENSOR]
@@ -33,21 +31,31 @@ def my_parser(service_info: BluetoothServiceInfoBleak):
     _LOGGER.log(service_info)
     return service_info.name
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+async def async_setup_entry(hass: HomeAssistant, config) -> bool:
     """Set up example BLE device from a config entry."""
-    address = entry.unique_id
-    coordinator = hass.data.setdefault(DOMAIN, {})[
-        entry.entry_id
-    ] = PassiveBluetoothProcessorCoordinator(
+    coordinator = PassiveBluetoothProcessorCoordinator(
         hass,
         _LOGGER,
-        address=address,
+        address="F4:55:1D:09:DC:34",
         mode=BluetoothScanningMode.ACTIVE,
-        update_method=my_parser,
+        update_method=my_parser
     )
-    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
-    entry.async_on_unload(
-        # only start after all platforms have had a chance to subscribe
-        coordinator.async_start()
-    )
+    coordinator.async_start()
+
+
+    # address = entry.unique_id
+    # coordinator = hass.data.setdefault(DOMAIN, {})[
+    #     entry.entry_id
+    # ] = PassiveBluetoothProcessorCoordinator(
+    #     hass,
+    #     _LOGGER,
+    #     address=address,
+    #     mode=BluetoothScanningMode.ACTIVE,
+    #     update_method=my_parser,
+    # )
+    # await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    # entry.async_on_unload(
+    #     # only start after all platforms have had a chance to subscribe
+    #     coordinator.async_start()
+    # )
     return True
