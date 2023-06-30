@@ -2,12 +2,8 @@ import logging
 import re
 
 from home_assistant_bluetooth import BluetoothServiceInfoBleak
-from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import Platform
-from homeassistant.core import HomeAssistant
 from homeassistant.components.bluetooth import BluetoothScanningMode
 from homeassistant.components.bluetooth.passive_update_processor import PassiveBluetoothProcessorCoordinator
-from homeassistant.const import Platform
 
 _LOGGER = logging.getLogger()
 
@@ -41,5 +37,4 @@ async def async_setup(hass, config):
     )
     coordinator.async_start()
 
-    # Return boolean to indicate that initialization was successful.
     return True
