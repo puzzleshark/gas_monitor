@@ -2,15 +2,11 @@
   "domain": "gas_monitor",
   "name": "Gas Monitor",
   "codeowners": [],
-  "dependencies": [],
+  "dependencies": ["bluetooth_adapters"],
   "documentation": "https://github.com/puzzleshark/ha-gas-tank-monitor",
   "integration_type": "device",
-  "iot_class": "local_polling",
+  "iot_class": "local_push",
+  "connectable": false,
   "requirements": [],
-  "version": "0.1.0",
-  "bluetooth": [
-    {
-      "local_name": "trbl:ACC*"
-    }
-  ]
+  "version": "0.1.1"
 }
