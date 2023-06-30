@@ -9,7 +9,7 @@ from homeassistant.components.bluetooth import BluetoothScanningMode
 from homeassistant.components.bluetooth.passive_update_processor import PassiveBluetoothProcessorCoordinator
 from homeassistant.const import Platform
 
-_LOGGER = logging.getLogger(__name__)
+_LOGGER = logging.getLogger()
 
 
 DOMAIN = "gas_monitor"
