@@ -27,7 +27,12 @@ def my_parser(service_info: BluetoothServiceInfoBleak):
 
 async def async_setup(hass, config):
     _LOGGER.info(config)
-    hass.states.async_set("gas_monitor.percentage", 10)
+    hass.states.async_set("gas_monitor.percentage", "hi")
+
+    def my_parser(service_info: BluetoothServiceInfoBleak):
+        _LOGGER.info(service_info)
+        hass.states.async_set("gas_monitor.percentage", service_info.name)
+        return service_info.name
 
     coordinator = PassiveBluetoothProcessorCoordinator(
         hass,
