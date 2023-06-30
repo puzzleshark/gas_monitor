@@ -17,16 +17,15 @@ def my_parser(service_info: BluetoothServiceInfoBleak):
 
 async def async_setup(hass, config):
     _LOGGER.info(config)
-    hass.states.async_set("gas_monitor.percentage", "hi")
 
     def my_parser(service_info: BluetoothServiceInfoBleak):
         _LOGGER.info(service_info)
         match = re.search(r'trbl:ACC \((.*?)\)', service_info.name)
         if match:
+            # bluetooth device advertises different names, we only care when the name has the percentage in it
             value = match.group(1)
-            print("Value in parentheses: ", value)
             hass.states.async_set("gas_monitor.percentage", float(value))
-        return service_info.name
+        # return service_info.name
 
     coordinator = PassiveBluetoothProcessorCoordinator(
         hass,
