@@ -8,7 +8,9 @@ DOMAIN = "gas_monitor"
 #     return True
 
 
+from dataclasses import dataclass
 import logging
+
 from home_assistant_bluetooth import BluetoothServiceInfoBleak
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
@@ -22,9 +24,14 @@ from homeassistant.const import Platform
 PLATFORMS: list[Platform] = [Platform.SENSOR]
 _LOGGER = logging.getLogger(__name__)
 
+@dataclass
+class my_data_class:
+    value: str
+
 
 def my_parser(service_info: BluetoothServiceInfoBleak):
     _LOGGER.log(service_info)
+    return service_info.name
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up example BLE device from a config entry."""
