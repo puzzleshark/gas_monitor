@@ -25,7 +25,7 @@ def my_parser(service_info: BluetoothServiceInfoBleak):
 #     # Return boolean to indicate that initialization was successful.
 #     return True
 
-def async_setup(hass, config):
+async def async_setup(hass, config):
     _LOGGER.info(config)
     hass.states.async_set("gas_monitor.percentage", 10)
 
