@@ -11,3 +11,5 @@ class GasMonitorConfigFlow(config_entries.ConfigFlow, domain="gas_monitor"):
     #     return self.async_show_form(
     #         step_id="user", data_schema=vol.Schema({vol.Required("mac"): str})
     #     )
+    async def async_step_finish(self, user_input=None):
+        return self.async_create_entry(title=self.data["title"], data=self.data)
