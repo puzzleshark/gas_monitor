@@ -10,3 +10,5 @@ gas_monitor:
   - mac: xx:xx:xx:xx
 ```
 to your **configuration.yaml**
+
+where **mac** is the mac address of the bluetooth tank monitoring device.
