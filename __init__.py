@@ -5,7 +5,7 @@ from home_assistant_bluetooth import BluetoothServiceInfoBleak
 from homeassistant.components.bluetooth import BluetoothScanningMode
 from homeassistant.components.bluetooth.passive_update_processor import PassiveBluetoothProcessorCoordinator
 
-_LOGGER = logging.getLogger()
+_LOGGER = logging.getLogger("custom_components.gas_monitor")
 
 
 DOMAIN = "gas_monitor"
@@ -25,12 +25,11 @@ async def async_setup(hass, config):
             # bluetooth device advertises different names, we only care when the name has the percentage in it
             value = match.group(1)
             hass.states.async_set("gas_monitor.percentage", float(value))
-        # return service_info.name
 
     coordinator = PassiveBluetoothProcessorCoordinator(
         hass,
         _LOGGER,
-        address="F4:55:1D:09:DC:34",
+        address=config["gas_monitor"]["mac"],
         mode=BluetoothScanningMode.ACTIVE,
         update_method=my_parser
     )

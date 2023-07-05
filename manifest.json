@@ -9,5 +9,6 @@
   "config_flow": false,
   "connectable": false,
   "requirements": [],
+  "loggers": ["custom_components.gas_monitor"],
   "version": "0.1.1"
 }
