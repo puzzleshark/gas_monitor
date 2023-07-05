@@ -1,0 +1,14 @@
+{
+  "domain": "gas_monitor",
+  "name": "Gas Monitor",
+  "codeowners": [],
+  "dependencies": ["bluetooth_adapters"],
+  "documentation": "https://github.com/puzzleshark/gas_monitor",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "config_flow": false,
+  "connectable": false,
+  "requirements": [],
+  "loggers": ["custom_components.gas_monitor"],
+  "version": "0.1.1"
+}
